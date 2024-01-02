@@ -1,0 +1,36 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.success {
+    background-color: #51b6259b;
+    color: #1b4907ff;
+}
+
+.error {
+    background-color: #901111bf;
+    color: #5b0101ff;
+}
+
+.hide {
+    display: none;
+}
+
+.bold {
+    font-weight: bolder;
+}

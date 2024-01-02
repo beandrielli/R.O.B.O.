@@ -1,0 +1,348 @@
+﻿@model RoboModel
+@{
+    ViewData["Title"] = "♫ Move & Move ♫";
+}
+
+<div class="row success hide" id="divSuccess">
+    <div class="col-12 ">
+        <h3>Salvo com sucesso</h3>
+    </div>
+</div>
+<div class="row error hide" id="divError">
+    <div class="col-12 error" >
+        <h3 id="errorMessage">Erro ao executar a operação.</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="row">
+        <div class="col-12">
+            <h3>Cabeça</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Inclinação</div>
+        <div class="col-3">Estado Atual: </div>
+        <div class="col-3">Novo Estado: </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <label id="lblPosicaoCabecaInclinacao" class="bold"></label>
+        </div>
+        <div class="col-3">
+            <select id="inclinacaoCabeca" asp-items="Html.GetEnumSelectList<ROBO.Dominio.ROBOEnums.Inclinacao>()"></select>
+        </div>
+        <div class="col-3">
+            <input type="button" value="Enviar" id="btnCabecaInclinacao" onClick="moverCabecaInclinacao(this);" />
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-2">Rotação</div>
+        <div class="col-3">Estado Atual: </div>
+        <div class="col-3">Novo Estado: </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <label id="lblPosicaoCabecaRotacao" class="bold"></label>
+        </div>
+        <div class="col-3">
+            <select id="rotacaoCabeca" asp-items="Html.GetEnumSelectList<ROBO.Dominio.ROBOEnums.Rotacao>()"></select>
+        </div>
+        <div class="col-3">
+            <input type="button" value="Enviar" id="btnCabecaRotacao" onClick="moverCabecaRotacao(this);" />
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="row">
+        <div class="col-12">
+            <h3>Braço Esquerdo</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Cotovelo</div>
+        <div class="col-3">Estado Atual: </div>
+        <div class="col-3">Novo Estado: </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <label id="lblPosicaoCotoveloEsquerdo" class="bold"></label>
+        </div>
+        <div class="col-3">
+            <select id="posicaoCotoveloEsquerdo" asp-items="Html.GetEnumSelectList<ROBO.Dominio.ROBOEnums.Contracao>()"></select>
+        </div>
+        <div class="col-3">
+            <input type="button" value="Enviar" id="btnCotoveloEsquerdo" onClick="moverCotoveloEsquerdo(this);" />
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-2">Pulso</div>
+        <div class="col-3">Estado Atual: </div>
+        <div class="col-3">Novo Estado: </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <label id="lblPosicaoPulsoEsquerdo" class="bold"></label>
+        </div>
+        <div class="col-3">
+            <select id="posicaoPulsoEsquerdo" asp-items="Html.GetEnumSelectList<ROBO.Dominio.ROBOEnums.Rotacao>()"></select>
+        </div>
+        <div class="col-3">
+            <input type="button" value="Enviar" id="btnPulsoEsquerdo" onClick="moverPulsoEsquerdo(this);" />
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="row">
+        <div class="col-12">
+            <h3>Braço Direito</h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-2">Cotovelo</div>
+        <div class="col-3">Estado Atual: </div>
+        <div class="col-3">Novo Estado: </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <label id="lblPosicaoCotoveloDireito" class="bold"></label>
+        </div>
+        <div class="col-3">
+            <select id="posicaoCotoveloDireito" asp-items="Html.GetEnumSelectList<ROBO.Dominio.ROBOEnums.Contracao>()"></select>
+        </div>
+        <div class="col-3">
+            <input type="button" value="Enviar" id="btnCotoveloDireito" onClick="moverCotoveloDireito(this);" />
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-2">Pulso</div>
+        <div class="col-3">Estado Atual: </div>
+        <div class="col-3">Novo Estado: </div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-3">
+            <label id="lblPosicaoPulsoDireito" class="bold"></label>
+        </div>
+        <div class="col-3">
+            <select id="posicaoPulsoDireito" asp-items="Html.GetEnumSelectList<ROBO.Dominio.ROBOEnums.Rotacao>()"></select>
+        </div>
+        <div class="col-3">
+            <input type="button" value="Enviar" id="btnPulsoDireito" onClick="moverPulsoDireito(this);" />
+        </div>
+
+</div>
+<br />
+    <br />
+    <br />
+<div class="row">
+    <div class="col-12 ">
+        <h3>Resetar R.O.B.O.</h3>
+        <input type="button" value=">>RESETAR<<" id="btnResetar" onClick="resetarRobo(this);" />
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+            var novoMovimento = null;
+            var tipoDireito = @Html.Raw((int)ROBO.Dominio.ROBOEnums.TipoBraco.Direito);
+            var tipoEsquerdo = @Html.Raw((int)ROBO.Dominio.ROBOEnums.TipoBraco.Esquerdo);
+    
+            $(document).ready(function () {
+                atualizarTela(null);
+            });
+
+            function successMessage(){
+                $("#divSuccess").fadeIn(2000);
+                $("#divSuccess").fadeOut(2000);
+
+            }
+
+            function errorMessage(mensagem) {
+                $("#errorMessage").html(mensagem);
+                $("#divError").fadeIn(2000);
+                $("#divError").fadeOut(2000);
+            
+            }
+
+            function atualizarTela(btn) {
+
+                if(btn != null && btn != undefined)
+                    setTimeout(function () { btn.disabled = false; }, 1000);
+
+                $.ajax({
+                    url: "@Html.Raw(Environment.GetEnvironmentVariable("caminhoAPI"))" + "/Robo",
+                    method: "GET",
+                    success: function (data) {
+                        console.log(data)
+                        $("#lblPosicaoCabecaInclinacao").text(data.cabeca.inclinacaoCabeca);
+                        $("#lblPosicaoCabecaRotacao").text(data.cabeca.rotacaoCabeca);
+                        $("#lblPosicaoCotoveloEsquerdo").text(data.bracoEsquerdo.posicaoCotovelo);
+                        $("#lblPosicaoPulsoEsquerdo").text(data.bracoEsquerdo.posicaoPulso);
+                        $("#lblPosicaoCotoveloDireito").text(data.bracoDireito.posicaoCotovelo);
+                        $("#lblPosicaoPulsoDireito").text(data.bracoDireito.posicaoPulso);
+                    },
+                    error: function (data) {
+                        errorMessage(data.responseText);
+                    }
+                });
+            }
+
+            function resetarRobo(btn){
+
+                if(! confirm("Resetar R.O.B.O.? Esta ação retornará todos os membros para o estado de repouso."))
+                    return;
+
+                btn.disabled = true;
+
+                $.ajax({
+                    url: "@Html.Raw(Environment.GetEnvironmentVariable("caminhoAPI"))" + "/Robo/Reset",
+                    method: "POST",
+                    success: function (data) {
+                        successMessage();
+                    },
+                    error: function (data) {
+                        errorMessage(data.responseText);
+                    },
+                    complete: function () {
+                        atualizarTela(btn);
+                    }
+                });
+            }
+
+            function moverCabecaInclinacao(btn) {
+                
+                btn.disabled = true;
+
+                novoMovimento = $("#inclinacaoCabeca").val();
+
+                if(novoMovimento== null || novoMovimento == undefined)
+                    return;
+                    
+                $.ajax({
+                    url: "@Html.Raw(Environment.GetEnvironmentVariable("caminhoAPI"))" + "/Cabeca/Inclinacao?novaPosicao=" + novoMovimento,
+                    method: "POST",
+                    success: function (data) {
+                        successMessage();
+                    },
+                    error: function (data) {
+                        errorMessage(data.responseText);
+                    },
+                    complete: function () {
+                        atualizarTela(btn);
+                    }
+                });
+
+            }
+            
+            function moverCabecaRotacao(btn) {
+
+                btn.disabled = true;
+
+                novoMovimento = $("#rotacaoCabeca").val();
+
+                if (novoMovimento == null || novoMovimento == undefined)
+                    return;
+
+                $.ajax({
+                    url: "@Html.Raw(Environment.GetEnvironmentVariable("caminhoAPI"))" + "/Cabeca/Rotacao?novaPosicao=" + novoMovimento,
+                    method: "POST",
+                    success: function (data) {
+                        successMessage();
+                    },
+                    error: function (data) {
+                        errorMessage(data.responseText);
+                    },
+                    complete: function () {
+                        atualizarTela(btn);
+                    }
+                });
+            }
+
+
+            function moverPulsoDireito(btn) {
+                moverPulso(btn, tipoDireito, $("#posicaoPulsoDireito").val());
+            }
+
+            function moverPulsoEsquerdo(btn) {
+                moverPulso(btn, tipoEsquerdo, $("#posicaoPulsoEsquerdo").val());
+            }
+
+            function moverCotoveloDireito(btn) {
+                moverCotovelo(btn, tipoDireito, $("#posicaoCotoveloDireito").val());
+            }
+
+            function moverCotoveloEsquerdo(btn) {
+                moverCotovelo(btn, tipoEsquerdo, $("#posicaoCotoveloEsquerdo").val());
+            }
+            
+            function moverPulso(btn, tipoBraco, novoMovimento){
+
+                btn.disabled = true;
+
+                if (novoMovimento == null || novoMovimento == undefined)
+                    return;
+
+                $.ajax({
+                    url: "@Html.Raw(Environment.GetEnvironmentVariable("caminhoAPI"))" + "/Braco/Pulso?tipoBraco=" + tipoBraco + "&novaPosicao=" + novoMovimento,
+                    method: "POST",
+                    success: function (data) {
+                        successMessage();
+                    },
+                    error: function (data) {
+                        errorMessage(data.responseText);
+                    },
+                    complete: function () {
+                        atualizarTela(btn);
+                    }
+                });
+            }
+
+            function moverCotovelo(btn, tipoBraco, novoMovimento) {
+
+                btn.disabled = true;
+
+                if (novoMovimento == null || novoMovimento == undefined)
+                    return;
+
+                $.ajax({
+                    url: "@Html.Raw(Environment.GetEnvironmentVariable("caminhoAPI"))" + "/Braco/Cotovelo?tipoBraco=" + tipoBraco + "&novaPosicao=" + novoMovimento,
+                    method: "POST",
+                    success: function (data) {
+                        successMessage();
+                    },
+                    error: function (data) {
+                        errorMessage(data.responseText);
+                    },
+                    complete: function () {
+                        atualizarTela(btn);
+                    }
+                });
+            }
+    
+    </script>
+
+
+}
