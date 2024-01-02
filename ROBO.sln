@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ROBO.Servicos", "Servicos\R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ROBO.RoboWeb", "RoboWeb\ROBO.RoboWeb.csproj", "{19F84F4D-5EE1-434E-8351-E6DF0DE8EDB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ROBO.Infra", "ROBO.Infra\ROBO.Infra.csproj", "{658C96DB-7A2D-42DE-8AEA-837B6293C49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ROBO.Infra", "ROBO.Infra\ROBO.Infra.csproj", "{658C96DB-7A2D-42DE-8AEA-837B6293C49B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ROBO.Test", "ROBO.Test\ROBO.Test.csproj", "{0B16B68D-AB29-4B23-BEC8-ABFB3A29676F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{658C96DB-7A2D-42DE-8AEA-837B6293C49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{658C96DB-7A2D-42DE-8AEA-837B6293C49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{658C96DB-7A2D-42DE-8AEA-837B6293C49B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B16B68D-AB29-4B23-BEC8-ABFB3A29676F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B16B68D-AB29-4B23-BEC8-ABFB3A29676F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B16B68D-AB29-4B23-BEC8-ABFB3A29676F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B16B68D-AB29-4B23-BEC8-ABFB3A29676F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
